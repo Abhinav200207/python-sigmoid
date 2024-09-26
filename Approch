@@ -1,0 +1,24 @@
+Problem Description:
+You are given an m x n matrix board containing 'X' and 'O'. The goal is to capture regions of 'O' cells that are completely surrounded by 'X'. A region is surrounded if none of the 'O' cells in that region are on the boundary of the matrix. The captured regions will have their 'O's replaced with 'X's in the output.
+
+Example 1:
+
+Input:
+board = [["X", "X", "X", "X"],
+         ["X", "O", "O", "X"],
+         ["X", "X", "O", "X"],
+         ["X", "O", "X", "X"]]
+Output:
+board = [["X", "X", "X", "X"],
+        ["X", "X", "X", "X"],
+        ["X", "X", "X", "X"],
+        ["X", "O", "X", "X"]]
+In this example, the region of 'O' cells connected to the boundary is not captured, while the rest of the 'O' cells are surrounded and converted to 'X'.
+
+
+Approach:
+Boundary BFS: Traverse the boundary of the board to find 'O' cells and perform BFS from these cells. Mark all 'O' cells connected to the boundary with 'Y' to indicate they shouldn't be captured.
+Capture Inner Regions: After marking, loop through the board again:
+Convert any remaining 'O' cells (not connected to the boundary) into 'X' (captured region).
+Convert the 'Y' cells back into 'O' since they are part of regions connected to the boundary and should not be captured.
+This ensures that only regions fully surrounded by 'X' are captured, while those connected to the boundary are left unchanged.
